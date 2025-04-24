@@ -228,6 +228,39 @@ public class LoginController {
 </html>
 
 
+=========================================== OR 
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>HOME</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="p-6 max-w-md mx-auto">-->
+<!--    <form action="#" th:action="@{/save}" method="post" class="space-y-4">-->
+<!--        <div>-->
+<!--            <label>Name:</label>-->
+<!--            <input type="text" id="name" name="name" th:value="${student.name}" class="border p-2 w-full" />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>City:</label>-->
+<!--            <input type="text" id="city" name="city" th:value="${student.city}" class="border p-2 w-full" />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>Marks:</label>-->
+<!--            <input type="number" name="marks" th:value="${student.marks}" class="border p-2 w-full" />-->
+<!--        </div>-->
+<!--        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
 
 
 
