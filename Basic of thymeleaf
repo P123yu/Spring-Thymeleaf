@@ -96,6 +96,141 @@ public class LoginController {
 =========================================================================================================================================
 
 
+// here i am doing one thing that when i hit home.controller the  i got form to fill after filling this form that json data is then 
+stored in data base and page redirect to login page or any other external webpage 
+
+//1. user class
+
+package com.example.spring_thymeleaf.model;
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name="_user")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String city;
+    private int marks;
+
+}
+
+
+//2. repository
+
+package com.example.spring_thymeleaf.repository;
+import com.example.spring_thymeleaf.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User,Long> {
+}
+
+// 3. home controller
+
+package com.example.spring_thymeleaf.controller;
+
+import com.example.spring_thymeleaf.model.User;
+import com.example.spring_thymeleaf.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+public class HomeController {
+
+//    @GetMapping("/home")
+//    public String getHome(){
+//        return "Home";
+//    }
+
+
+    @GetMapping("/home")
+    public String getHome(Model model) {
+        model.addAttribute("user", new User()); // Create a new User object and add it to the model
+        return "home"; // Return the Thymeleaf template name
+    }
+
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping("/save")
+    public String saveStudent(@ModelAttribute User user) {
+        userRepository.save(user);
+        System.out.println("Saved student to DB: " + user.getName());
+//        return "redirect:/login";  // Redirect to the login page after saving
+        return "redirect:https://spring.io/guides/gs/spring-boot";
+
+    }
+}
+
+
+
+====================LOGIN.HTML==================
+
+package com.example.spring_thymeleaf.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class LoginController {
+
+    @GetMapping("/login")
+    public String login(){
+        return "Login";
+    }
+
+}
+
+
+
+
+=== thymeleaf
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>HOME</title>
+</head>
+<body>
+<div class="p-6 max-w-md mx-auto">
+    <form  th:action="@{/save}" method="post" class="space-y-4">
+        <div>
+            <label>Name:</label>
+            <input type="text" name="name" class="border p-2 w-full" />
+        </div>
+        <div>
+            <label>City:</label>
+            <input type="text" name="city"  class="border p-2 w-full" />
+        </div>
+        <div>
+            <label>Marks:</label>
+            <input type="number" name="marks" class="border p-2 w-full" />
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+    </form>
+</div>
+</body>
+</html>
+
+
+
+
+
 
 
 
