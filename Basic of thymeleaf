@@ -1,0 +1,29 @@
+
+// thymeleaf
+
+first create one spring boot project from spring initializer 
+
+now go to templates under resources folder and do right click on templates to create HTML file suppose lets name that file to Home.html  and then add  tailwind css cdn 
+which is  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+so our HTML file looks like 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Title</title>
+
+</head>
+<body>
+  <div class="text-xl text-blue-900">
+      hello world
+  </div>
+</body>
+</html>
+
+
+and now we can use spring mvc to see this html page on browser 
+
