@@ -228,7 +228,7 @@ public class LoginController {
 </html>
 
 
-=========================================== OR 
+=========================================== OR ===================================================
 
 
 <!--<!DOCTYPE html>-->
@@ -258,6 +258,115 @@ public class LoginController {
 <!--</div>-->
 <!--</body>-->
 <!--</html>-->
+
+===========================================  here we are using redirect built in method for spring mvc in normal spring boot application 
+
+// just imagine step 
+
+// 1. using thymeleaf we are sending one email using springboot to email . now imagine that in that email we have one button whose name
+is accept now if i click on accept button then it is calling home.controller because in that thymeleaf template when we are clicking on 
+accept button then it is calling internally url of Home.html 
+
+Example here we are taking Home.html page which have one button and when we click on that button then it navigate to next page which is 
+Login.html
+
+// HOME.HTML
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>HOME</title>
+
+</head>
+<body>
+  <div class="text-xl text-blue-900">
+      hello world
+  </div>
+  <div class="p-6 max-w-md mx-auto">
+      <form  th:action="@{/next}" method="post" class="space-y-4">
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+      </form>
+  </div>
+</body>
+</html>
+
+// LOGIN.HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>LOGIN</title>
+
+</head>
+<body>
+<div class="text-xl text-blue-900">
+    login page
+</div>
+</body>
+</html>
+
+
+// Home.controller ========================================================================================================
+
+package com.example.spring_thymeleaf.controller;
+
+import com.example.spring_thymeleaf.model.User;
+import com.example.spring_thymeleaf.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@CrossOrigin
+public class HomeController {
+
+    @GetMapping("/home")
+    public String getHome(){
+        return "Home";
+    }
+
+//
+//    @GetMapping("/home")
+//    public String getHome(Model model) {
+//        model.addAttribute("user", new User()); // Create a new User object and add it to the model
+//        return "home"; // Return the Thymeleaf template name
+//    }
+//
+//
+//    @Autowired
+//    private UserRepository userRepository;
+//
+//    @PostMapping("/save")
+//    public String saveStudent(@ModelAttribute User user) {
+//        userRepository.save(user);
+//        System.out.println("Saved student to DB: " + user.getName());
+////        return "redirect:/login";  // Redirect to the login page after saving
+//        return "redirect:https://spring.io/guides/gs/spring-boot";
+//
+//    }
+
+
+
+
+
+
+    @PostMapping("/next")
+    public String saveStudent() {
+//        return "redirect:/login";  // Redirect to the login page after saving
+        return "redirect:https://spring.io/guides/gs/spring-boot";
+
+    }
+
+
+}
+
 
 
 
